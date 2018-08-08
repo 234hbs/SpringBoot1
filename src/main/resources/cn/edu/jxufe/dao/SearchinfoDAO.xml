@@ -79,4 +79,9 @@
       searchTime = #{searchtime,jdbcType=TIMESTAMP}
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAllSearchinfo" resultMap="BaseResultMap">
+    SELECT * FROM searchinfo
+  </select>
+
 </mapper>

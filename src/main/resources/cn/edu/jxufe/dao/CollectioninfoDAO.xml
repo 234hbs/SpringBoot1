@@ -79,4 +79,7 @@
       c_time = #{cTime,jdbcType=TIMESTAMP}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  <select id="findAllCollertioninfo" resultMap="BaseResultMap">
+    SELECT * FROM collectioninfo
+  </select>
 </mapper>
