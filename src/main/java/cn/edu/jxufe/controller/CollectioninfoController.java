@@ -20,4 +20,8 @@ public class CollectioninfoController {
     public List<Collectioninfo> findAllCollertionInfo() {
         return collectioninfoService.findAllCollertioninfo();
     }
+
+    public void hello(){
+
+    }
 }
