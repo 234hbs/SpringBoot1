@@ -1,6 +1,6 @@
 package cn.edu.jxufe.controller;
 
-import cn.edu.jxufe.controller.service.GoodsCategoryService;
+import cn.edu.jxufe.service.GoodsCategoryService;
 import cn.edu.jxufe.entity.GoodsCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

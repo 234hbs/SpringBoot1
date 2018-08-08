@@ -1,6 +1,6 @@
 package cn.edu.jxufe.service.impl;
 
-import cn.edu.jxufe.controller.service.GoodsinfoService;
+import cn.edu.jxufe.service.GoodsinfoService;
 import cn.edu.jxufe.dao.GoodsinfoDAO;
 import cn.edu.jxufe.entity.Goodsinfo;
 import org.springframework.beans.factory.annotation.Autowired;

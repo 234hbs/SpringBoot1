@@ -1,6 +1,6 @@
 package cn.edu.jxufe.controller;
 
-import cn.edu.jxufe.controller.service.GoodsCommentService;
+import cn.edu.jxufe.service.GoodsCommentService;
 import cn.edu.jxufe.entity.GoodsComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -14,13 +14,12 @@ import java.util.List;
  */
 @Controller
 public class AdminController {
-//    @Autowired
+    @Autowired
     private AdminService adminService;
 
     @ResponseBody
     @RequestMapping("findAll")
     public List<Admin> findAllAdmin(){
-
         return adminService.findAllAdmin();
     }
 }
