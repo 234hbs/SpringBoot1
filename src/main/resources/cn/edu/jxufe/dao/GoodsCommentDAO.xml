@@ -139,4 +139,7 @@
       update_time = #{updateTime,jdbcType=BIGINT}
     where scomm_id = #{scommId,jdbcType=INTEGER}
   </update>
+  <select id="findAllGoodsComment" resultMap="BaseResultMap">
+    SELECT * FROM goods_comment
+  </select>
 </mapper>
