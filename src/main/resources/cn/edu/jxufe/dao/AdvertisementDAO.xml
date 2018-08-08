@@ -130,4 +130,8 @@
   <select id="findAllAdvertisement" resultMap="BaseResultMap">
     SELECT * from Advertisement
   </select>
+
+  <select id="findOnLineAdv" resultMap="BaseResultMap">
+    SELECT * FROM Advertisement WHERE adv_offline=1 order by adv_order
+  </select>
 </mapper>

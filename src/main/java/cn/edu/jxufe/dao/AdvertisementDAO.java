@@ -10,5 +10,8 @@ import java.util.List;
  */
 @Repository
 public interface AdvertisementDAO extends MyBatisBaseDao<Advertisement, Integer> {
+    //查询所有广告
     public List<Advertisement> findAllAdvertisement();
+    //查询在线广告
+    public List<Advertisement> findOnLineAdv();
 }

@@ -63,15 +63,13 @@
 <!--slide-->
 <div class="slide">
   <div class="swiper-wrapper">
-      <%--循环顶部图片--%>
-      <c:forEach items="${list}" var="b">
-    <div class="swiper-slide">
-      <a href="#">
-        <img src="upload/${b.brandPic}"/>
-      </a>
-    </div>
+      <c:forEach items="${adv}" var="a" >
+        <div class="swiper-slide">
+          <a href="${a.advLinkUrl}">
+            <img src="${a.advPicUrl}"/>
+          </a>
+        </div>
       </c:forEach>
-
   </div>
   <div class="pagination"></div>
 </div>
