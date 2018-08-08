@@ -10,5 +10,8 @@ import java.util.List;
  */
 @Repository
 public interface GoodsinfoDAO extends MyBatisBaseDao<Goodsinfo, Integer> {
+    
     public List<Goodsinfo> findAllGoodsinfo();
+
+
 }
