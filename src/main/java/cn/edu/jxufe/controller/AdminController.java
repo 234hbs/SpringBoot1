@@ -20,7 +20,6 @@ public class AdminController {
     @ResponseBody
     @RequestMapping("findAll")
     public List<Admin> findAllAdmin(){
-
         return adminService.findAllAdmin();
     }
 }

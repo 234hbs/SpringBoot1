@@ -1,5 +1,4 @@
 package cn.edu.jxufe.controller;
-
 import cn.edu.jxufe.service.AdvertisementService;
 import cn.edu.jxufe.service.GoodsinfoService;
 import cn.edu.jxufe.entity.Goodsinfo;

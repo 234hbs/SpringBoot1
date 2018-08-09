@@ -79,7 +79,7 @@
 <dl class="tab_proList">
 <dd>
   <ul>
-  <c:forEach items="${goods}" var="g">   
+  <c:forEach items="${goods}" var="g">
     <li>
         <div class="productArea">
           <a href="product.jsp" class="goodsPic">
