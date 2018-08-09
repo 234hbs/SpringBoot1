@@ -23,8 +23,6 @@ public class PageController {
     @Autowired
     private AdvertisementService advertisementService;
 
-
-
     @RequestMapping("page/{page}")
     public String pageCheck(@PathVariable("page")String page){
       return page;

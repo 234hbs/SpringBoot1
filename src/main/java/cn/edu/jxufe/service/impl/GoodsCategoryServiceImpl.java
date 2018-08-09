@@ -1,6 +1,6 @@
 package cn.edu.jxufe.service.impl;
 
-import cn.edu.jxufe.controller.service.GoodsCategoryService;
+import cn.edu.jxufe.service.GoodsCategoryService;
 import cn.edu.jxufe.dao.GoodsCategoryDAO;
 import cn.edu.jxufe.entity.GoodsCategory;
 import org.springframework.beans.factory.annotation.Autowired;

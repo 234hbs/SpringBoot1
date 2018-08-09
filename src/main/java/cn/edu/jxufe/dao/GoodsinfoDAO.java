@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface GoodsinfoDAO extends MyBatisBaseDao<Goodsinfo, Integer> {
-    
+    //查询所有商品
     public List<Goodsinfo> findAllGoodsinfo();
 
 

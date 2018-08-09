@@ -21,6 +21,7 @@ public class OrderinfogoodsController {
     @ResponseBody
     @RequestMapping("findAllOrdergoods")
     public List<OrderinfoGoods> findAllOrder(){
+
         return orderinfogoodsService.findAllOrderGoods();
     }
 }
