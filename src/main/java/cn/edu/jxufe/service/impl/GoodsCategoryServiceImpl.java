@@ -15,7 +15,7 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
     @Autowired
     GoodsCategoryDAO goodsCategoryDAO;
     @Override
-    public List<GoodsCategory> findAllGoodsCategory() {
-        return goodsCategoryDAO.findAllGoodsCategory();
+    public List<GoodsCategory> findGoodsCategory() {
+        return goodsCategoryDAO.findGoodsCategory();
     }
 }

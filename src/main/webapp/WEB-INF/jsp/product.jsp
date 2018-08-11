@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
  String path = request.getContextPath();
  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -57,7 +60,7 @@ $(document).ready(function(){
  <ul>
   <li>
    <span>创建时间</span>
-   <span><time>${g.createTime}</time></span>
+   <span><time><fmt:formatDate value="${g.createTime}" pattern="YYYY-MM-dd HH:mm:SS"></fmt:formatDate></time></span>
   </li>
   <li>
    <span>${g.memberId}</span>

@@ -37,28 +37,72 @@ $(document).ready(function(){
 		  $(this).parents(".drop_list").hide();
 		  });
 	  });
-   //飞入动画，具体根据实际情况调整
-   $(".addToCart").click(function(){
-	        $(".hoverCart a").html(parseInt($(".hoverCart a").html())+1);/*测试+1*/
-            var shopOffset = $(".hoverCart").offset();
-            var cloneDiv = $(this).parent().siblings(".goodsPic").clone();
-            var proOffset = $(this).parent().siblings(".goodsPic").offset();
-            cloneDiv.css({ "position": "absolute", "top": proOffset.top, "left": proOffset.left });
-            $(this).parent().siblings(".goodsPic").parent().append(cloneDiv);
-            cloneDiv.animate({
-				width:0,
-				height:0,
-                left: shopOffset.left,
-                top: shopOffset.top,
-				opacity:1
-            },"slow");
-	   });
 	var mySwiper = new Swiper('.swiper-container',{
 	slidesPerView :5,
-	slidesPerGroup :5,
+	slidesPerGroup :5
 	})
 });
+//定义了一个方法实现动画效果
+function donghua(obj){
+    obj=$(obj);  //将普通的对象转换成 jquery对象
+    //修改购物车数量的显示
+    $(".hoverCart a").html(parseInt($(".hoverCart a").html())+1);/*测试+1*/
+    //拿到样式类别为hoverCart的坐标
+    var shopOffset = $(".hoverCart").offset();
+    //复制图片的元素
+    var cloneDiv = obj.parent().siblings(".goodsPic").clone();
+    //获取图片的坐标
+    var proOffset = obj.parent().siblings(".goodsPic").offset();
+    //设置这个图片初始样式
+    cloneDiv.css({ "position": "absolute", "top": proOffset.top, "left": proOffset.left });
+    //将图片追加到类别为goodsPic的父元素上面
+    obj.parent().siblings(".goodsPic").parent().append(cloneDiv);
+    //开始一个移动的动画效果
+    cloneDiv.animate({
+        width:0,
+        height:0,
+        left: shopOffset.left,
+        top: shopOffset.top,
+        opacity:1
+    },5000,function(){
+        $(this).remove();
+    });
+}
 </script>
+
+
+
+    <script>
+       //JAVASCRIPT方法的定义
+        function chaShangpin(cid){
+            var url="goodsinfocategory"+cid;
+          $.post(url,function(data){
+                //这里的data参数就是控制器中输出的json字符串
+        //        alert(data);
+              //循环这个data的json数据。不断的拼接新的HTML代码。然后追加到一个类型为(class="productList")
+              // 的标签下的ul标签下
+              //var html=$(".productList ul").html();   //输出指定的某个元素的HTML标签
+             //先清空掉UL里面的li元素。但是第一个li元素不能删除
+              $(".productList ul li:gt(0)").remove()
+              for(var i=0;i<data.length;i++){
+                  var li=$("#moban"); //找到模版的LI标签
+                  //找到这个li里面的H2标签,并且设置H2的HTML代码
+                  li.find("H2").html("<a href='goodsinfo"+data[i].goodsId+"'>"+data[i].goodsName+"</a>");
+                  //找到这个li里面的第一个A标签,并且设置他的href属性
+                  li.find("a:eq(0)").attr("href","goodsinfo"+data[i].goodsId);
+                  //找到这个li里面的第一个A标签里面的img标签，并且设置他的src属性
+                  li.find("a:eq(0)").find("img").attr("src","upload/image/"+data[i].goodsImage);
+                  //找到这里li里面的p标签里面的del标签。并设置他的html内容
+                  li.find("p del").html(data[i].goodsPrice);
+                  //找到这里li里面的p标签里面的strong标签。并设置他的html内容
+                  li.find("p strong").html(data[i].goodsSellPrice);
+                  //找到这里li里面的类型为addToCart的标签并为其添加了一个点击事件，当点击的时候调用一个叫做donghua的方法。把自己传入到方法中
+                  li.find(".addToCart").attr("onclick","donghua(this)");
+                  $(".productList ul").append("<li>"+li.html()+"</li>");
+              }
+            });
+        }
+    </script>
 </head>
 <body style="background:white;">
 <!--header-->
@@ -69,16 +113,9 @@ $(document).ready(function(){
 <!-- category Swiper -->
 <div class="swiper-container category_list">
     <ul class="swiper-wrapper">
-        <li class="swiper-slide"><a href="category.jsp">分类</a></li>
-        <li class="swiper-slide"><a href="category.jsp">横向滚动</a></li>
-        <li class="swiper-slide"><a href="category.jsp" class="curr_link">当前分类</a></li>
-        <li class="swiper-slide"><a href="category.jsp">分类</a></li>
-        <li class="swiper-slide"><a href="category.jsp">玻璃</a></li>
-        <li class="swiper-slide"><a href="category.jsp">创意</a></li>
-        <li class="swiper-slide"><a href="category.jsp">设计</a></li>
-        <li class="swiper-slide"><a href="category.jsp">设计稿</a></li>
-        <li class="swiper-slide"><a href="category.jsp">测试</a></li>
-        <li class="swiper-slide"><a href="category.jsp">分类</a></li>
+        <c:forEach items="${catelist}" var="a">
+        <li class="swiper-slide"><a href="javascript:chaShangpin( ${a.catId} )"> ${a.catName}</a></li>
+        </c:forEach>
     </ul>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -100,7 +137,8 @@ $(document).ready(function(){
 <!--productList-->
 <section class="productList">
   <ul>
-   <li>
+
+   <li id="moban" style="display:none">
     <a href="product.jsp" class="goodsPic">
      <img src="../../upload/goods001.jpg"/>
     </a>
@@ -117,74 +155,9 @@ $(document).ready(function(){
      <a class="addToCart">&#126;</a>
     </div>
    </li>
-   <li>
-    <a href="product.jsp" class="goodsPic">
-     <img src="../../upload/goods002.jpg"/>
-    </a>
-    <div class="goodsInfor">
-     <h2>
-      <a href="product.jsp">时尚烟灰缸 玻璃制品</a>
-     </h2>
-     <p>
-      <del>12.90</del>
-     </p>
-     <p>
-      <strong class="price">8.90</strong>
-     </p>
-     <a class="addToCart">&#126;</a>
-    </div>
-   </li>
-   <li>
-    <a href="product.jsp" class="goodsPic">
-     <img src="../../upload/goods003.jpg"/>
-    </a>
-    <div class="goodsInfor">
-     <h2>
-      <a href="product.jsp">花杯 带底座</a>
-     </h2>
-     <p>
-      <del>9.90</del>
-     </p>
-     <p>
-      <strong class="price">6.90</strong>
-     </p>
-     <a class="addToCart">&#126;</a>
-    </div>
-   </li>
-   <li>
-    <a href="product.jsp" class="goodsPic">
-     <img src="../../upload/goods005.jpg"/>
-    </a>
-    <div class="goodsInfor">
-     <h2>
-      <a href="product.jsp">新婚天鹅 玻璃工艺品</a>
-     </h2>
-     <p>
-      <del>9.90</del>
-     </p>
-     <p>
-      <strong class="price">6.90</strong>
-     </p>
-     <a class="addToCart">&#126;</a>
-    </div>
-   </li>
-   <li>
-    <a href="product.jsp" class="goodsPic">
-     <img src="../../upload/goods004.jpg"/>
-    </a>
-    <div class="goodsInfor">
-     <h2>
-      <a href="product.jsp">招财貔貅</a>
-     </h2>
-     <p>
-      <del>9.90</del>
-     </p>
-     <p>
-      <strong class="price">6.90</strong>
-     </p>
-     <a class="addToCart">&#126;</a>
-    </div>
-   </li>
+
+
+
   </ul>
   <a class="more_btn">加载更多</a>
 </section>

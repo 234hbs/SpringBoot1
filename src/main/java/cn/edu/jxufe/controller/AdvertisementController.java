@@ -16,23 +16,4 @@ import java.util.List;
  */
 @Controller
 public class AdvertisementController {
-//    @Autowired
-//    private AdvertisementService advertisementService;
-
-//    @ResponseBody
-//    @RequestMapping("find")
-//    public List<Advertisement> findAllAdvertisement(){
-//        return advertisementService.findAllAdvertisement();
-//    }
-
-//    @RequestMapping("index")
-//    public String findOnLineAdv(ModelMap map){
-//        List<Advertisement> list= advertisementService.findOnLineAdv();
-//        map.put("adv",list);
-//        return "index";
-//    }
-
-
-
-
 }

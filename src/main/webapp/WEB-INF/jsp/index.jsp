@@ -27,30 +27,47 @@
   <script src="../../js/jquery.js"></script>
   <script src="../../js/swiper.min.js"></script>
   <script>
+    var v;
     $(document).ready(function(){
       var mySwiper = new Swiper('.slide',{
         autoplay:5000,
         visibilityFullFit : true,
         loop:true,
-        pagination : '.pagination',
+        pagination : '.pagination'
       });
       //飞入动画，具体根据实际情况调整
       $(".addToCart").click(function(){
-        $(".hoverCart a").html(parseInt($(".hoverCart a").html())+1);/*测试+1*/
-        var shopOffset = $(".hoverCart").offset();
-        var cloneDiv = $(this).parent().siblings(".goodsPic").clone();
-        var proOffset = $(this).parent().siblings(".goodsPic").offset();
-        cloneDiv.css({ "position": "absolute", "top": proOffset.top, "left": proOffset.left });
-        $(this).parent().siblings(".goodsPic").parent().append(cloneDiv);
-        cloneDiv.animate({
-          width:0,
-          height:0,
-          left: shopOffset.left,
-          top: shopOffset.top,
-          opacity:1
-        },"slow");
+        v=$(this);
+        $.post("putCart",{goodsid:$(this).attr("title")},function(data){
+          if(data=="success"){
+            feiru(v);
+          }else{
+            alert("添加失败")
+          }
+        });
+
       });
-    });
+      });
+
+    function feiru(obj) {
+      $(".hoverCart a").html(parseInt($(".hoverCart a").html()) + 1);
+      /*测试+1*/
+      var shopOffset = $(".hoverCart").offset();
+      var cloneDiv = obj.parent().siblings(".goodsPic").clone();
+      var proOffset = obj.parent().siblings(".goodsPic").offset();
+      cloneDiv.css({"position": "absolute", "top": proOffset.top, "left": proOffset.left});
+      obj.parent().siblings(".goodsPic").parent().append(cloneDiv);
+      cloneDiv.animate({
+        width: 0,
+        height: 0,
+        left: shopOffset.left,
+        top: shopOffset.top,
+        opacity: 1
+      }, 1000, function () {
+        $(this).remove();
+      })
+    }
+
   </script>
 </head>
 <body>
@@ -82,12 +99,12 @@
   <c:forEach items="${goods}" var="g">
     <li>
         <div class="productArea">
-          <a href="product.jsp" class="goodsPic">
-            <img src="../../upload/goods001.jpg"/>
+          <a href="goodsinfo${g.goodsId}" class="goodsPic">
+            <img src="../../upload/image/${g.goodsImage}"/>
           </a>
           <div class="goodsInfor">
             <h2>
-              <a href="product.jsp">${g.goodsName}</a>
+              <a href="goodsinfo${g.goodsId}">${g.goodsName}</a>
             </h2>
             <p>
               <del>${g.goodsPrice}</del>
@@ -95,7 +112,7 @@
             <p>
               <strong class="price">${g.goodsSellPrice}</strong>
             </p>
-            <a class="addToCart">&#126;</a>
+            <a class="addToCart" title="${g.goodsId}">&#126;</a>
           </div>
         </div>
         <aside>
@@ -117,9 +134,9 @@
 <div style="height:1.2rem;"></div>
 <nav>
   <a href="index.jsp" class="homeIcon">首页</a>
-  <a href="category.jsp" class="categoryIcon">分类</a>
-  <a href="cart.jsp" class="cartIcon">购物车</a>
-  <a href="user.jsp" class="userIcon">我的</a>
+  <a href="category" class="categoryIcon">分类</a>
+  <a href="getCart" class="cartIcon">购物车</a>
+  <a href="page/user" class="userIcon">我的</a>
 </nav>
 </body>
 </html>

@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StartWebApp {
     public static void main(String[] args) {
         SpringApplication.run(StartWebApp.class);
+        System.out.println("服务启动！");
     }
-
 
 }
 

@@ -114,7 +114,9 @@
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where cat_id = #{catId,jdbcType=INTEGER}
   </update>
-  <select id="findAllGoodsCategory" resultMap="BaseResultMap">
-    SELECT * FROM goods_category
+
+  <select id="findGoodsCategory" resultMap="BaseResultMap">
+    SELECT * FROM `goods_category` WHERE is_offline=1 order by sort
   </select>
+
 </mapper>

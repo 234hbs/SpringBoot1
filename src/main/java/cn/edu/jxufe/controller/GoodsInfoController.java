@@ -5,6 +5,7 @@ import cn.edu.jxufe.entity.Goodsinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,6 +35,19 @@ public class GoodsInfoController {
         map.put("goods",goodsInfoService.findAllGoodsinfo());
         map.put("advs",advertisementService.findOnLineAdv());
         return "index";
-
     }
+
+    @RequestMapping("goodsinfo{gid}")
+    public String gotoGoods(@PathVariable("gid") int goodis,ModelMap map){
+        Goodsinfo goodsinfo=goodsInfoService.findGoodsByGid(goodis);
+        map.put("g",goodsinfo);
+        return "product";
+    }
+
+    @RequestMapping("goodsinfocategory{cid}")
+    @ResponseBody
+    public Object getGoodsInfoByCategory(@PathVariable("cid") int cid){
+        return goodsInfoService.findGoodsByCategory(cid);
+    }
+
 }
