@@ -103,32 +103,72 @@ $(document).ready(function(){
  <c:set var="count" value="${count+it.value.count}"></c:set>
  <c:set var="totalprice" value="${totalprice+it.value.count*it.value.goodsinfo.goodsSellPrice}"></c:set>
  <dd>
-  <a href="product.jsp" class="goodsPic"><img src="upload/image/${it.value.goodsinfo.goodsImage}"/></a>
+  <input type="checkbox"/>
+  <a href="product.jsp" class="goodsPic"><img src="../../upload/goods004.jpg"/></a>
   <div class="goodsInfor">
    <h2>
-    <a href="product.jsp">${it.value.goodsinfo.goodsName}</a>
+    <a href="product.jsp">聚财貔貅风水摆件</a>
     <span>1</span>
    </h2>
    <div class="priceArea">
-    <strong>${it.value.goodsinfo.goodsSellPrice}</strong>
-    <del>${it.value.goodsinfo.goodsPrice}</del>
+    <strong>0.00</strong>
+    <del>0.00</del>
    </div>
    <div class="numberWidget">
-    <input type="button" value="-" class="minus" title="${it.value.goodsinfo.goodsId}"/>
-    <input type="text" value="${it.value.count}" disabled  class="number"/>
-    <input type="button" value="+"  class="plus"  title="${it.value.goodsinfo.goodsId}"/>
+    <input type="button" value="-" class="minus"/>
+    <input type="text" value="1" disabled  class="number"/>
+    <input type="button" value="+"  class="plus"/>
    </div>
   </div>
-  <a class="delBtn" title="${it.value.goodsinfo.goodsId}">删除</a>
+  <a class="delBtn">删除</a>
  </dd>
-</c:forEach>
+ <dd>
+  <input type="checkbox"/>
+  <a href="product.jsp" class="goodsPic"><img src="../../upload/goods002.jpg"/></a>
+  <div class="goodsInfor">
+   <h2>
+    <a href="product.jsp">烟灰缸 玻璃工艺品...</a>
+    <span>1</span>
+   </h2>
+   <div class="priceArea">
+    <strong>0.00</strong>
+    <del>0.00</del>
+   </div>
+   <div class="numberWidget">
+    <input type="button" value="-" class="minus"/>
+    <input type="text" value="1" disabled class="number"/>
+    <input type="button" value="+" class="plus"/>
+   </div>
+  </div>
+  <a class="delBtn">删除</a>
+ </dd>
+ <dd>
+  <input type="checkbox"/>
+  <a href="product.jsp" class="goodsPic"><img src="../../upload/goods003.jpg"/></a>
+  <div class="goodsInfor">
+   <h2>
+    <a href="product.jsp">迷你花杯 送底座</a>
+    <span>1</span>
+   </h2>
+   <div class="priceArea">
+    <strong>0.00</strong>
+    <del>0.00</del>
+   </div>
+   <div class="numberWidget">
+    <input type="button" value="-" class="minus"/>
+    <input type="text" value="1" disabled  class="number"/>
+    <input type="button" value="+" class="plus"/>
+   </div>
+  </div>
+  <a class="delBtn">删除</a>
+ </dd>
 </dl>
 <!--bottom nav-->
 <div style="height:1rem;"></div>
 <aside class="btmNav">
  <ul>
-  <li><a class="cart_icon"><em>${count}</em></a></li>
-  <li><a id="price">合计：￥${totalprice}</a></li>
+  <li><a class="cart_icon"><em>0</em></a></li>
+  <li><a>合计：￥0.00</a></li>
   <li><a href="confirm_order.jsp">立即下单</a></li>
  </ul>
 </aside>
