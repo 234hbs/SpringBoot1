@@ -4,6 +4,8 @@ package cn.edu.jxufe.entity;
  * Created by 29079 on 2018/8/10.
  */
 public class GouWuPing implements java.io.Serializable  {
+    private Goodsinfo goodsinfo;
+    private int count;
     public GouWuPing() {
     }
 
@@ -12,8 +14,7 @@ public class GouWuPing implements java.io.Serializable  {
         this.count = count;
     }
 
-    private Goodsinfo goodsinfo;
-    private int count;
+
 
     public Goodsinfo getGoodsinfo() {
         return goodsinfo;

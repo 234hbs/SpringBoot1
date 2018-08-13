@@ -20,10 +20,8 @@ import java.util.Map;
 public class CartController {
     @Autowired
     GoodsinfoService goodsinfoService;
-
     @RequestMapping("putCart")
     @ResponseBody
-
     public Object putcart(int goodsid, HttpSession session) {
         try {
             //通过商品ID获取商品详情信息
@@ -56,8 +54,6 @@ public class CartController {
             ex.printStackTrace();
             return "error";
         }
-
-
     }
 
     @RequestMapping("getCart")
@@ -66,6 +62,50 @@ public class CartController {
         Map<Integer,GouWuPing> map=(Map<Integer,GouWuPing>)session.getAttribute("cart");
         return map;
     }
+
+    @RequestMapping("toCart")
+    public String toCart(){
+        System.out.println("去购物车页面");
+        return "cart";
+    }
+
+    @RequestMapping("updateCart")
+    @ResponseBody
+    public Object updateCart(Integer goodsid,String flag,HttpSession session){
+        //从session中取出购物车
+        Map<Integer,GouWuPing> cart=(Map<Integer,GouWuPing>) session.getAttribute("cart");
+        int totalcount=0;
+        int totalprice=0;
+        if(cart!=null){
+            GouWuPing g=cart.get(goodsid);
+            if(flag.equals("+")){
+                System.out.println("修改购物车中"+goodsid+"号商品的购买数量加一");
+                g.setCount(g.getCount()+1);
+            }else if(flag.equals("-")){
+                System.out.println("修改购物车中"+goodsid+"号商品的购买数量减一");
+                g.setCount(g.getCount()-1);
+            }else if(flag.equals("del")){
+                System.out.println("购物车中删除商品");
+                cart.remove(goodsid);
+            }
+
+            for(GouWuPing go : cart.values()){
+                totalcount+=go.getCount(); //计算购物车中的购物数量
+                totalprice+=go.getCount()*go.getGoodsinfo().getGoodsSellPrice(); //计算总金额
+            }
+        }
+        Map map=new HashMap<>();
+        map.put("totalcount",totalcount);
+        map.put("totalprice",totalprice);
+        return map;
+
+
+
+
+
+    }
+
+
 
 }
 

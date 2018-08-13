@@ -30,7 +30,7 @@ public class GoodsInfoController {
         return goodsInfoService.findAllGoodsinfo();
     }
 
-    @RequestMapping("index")
+    @RequestMapping("/")
     public String findAllGoods(ModelMap map){
         map.put("goods",goodsInfoService.findAllGoodsinfo());
         map.put("advs",advertisementService.findOnLineAdv());
