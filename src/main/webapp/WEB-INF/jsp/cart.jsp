@@ -87,9 +87,7 @@ $(document).ready(function(){
 		  $("body").append(tipsCont);
 		  }
 	  }
-
 });
-
 </script>
 </head>
 <body>
@@ -99,11 +97,10 @@ $(document).ready(function(){
  <h1>购物车</h1>
 </header>
 <dl class="cart">
- <c:set var="count" value="0"></c:set>
- <c:set var="totalprice" value="0"></c:set>
-<c:forEach items="${cart}" var="it">
- <c:set var="count" value="${count+it.value.count}"></c:set>
- <c:set var="totalprice" value="${totalprice+it.value.count*it.value.goodsinfo.goodsSellPrice}"></c:set>
+ <dt>
+  <label><input type="checkbox"/>全选</label>
+  <a class="edit">编辑</a>
+ </dt>
  <dd>
   <input type="checkbox"/>
   <a href="product.jsp" class="goodsPic"><img src="../../upload/goods004.jpg"/></a>
