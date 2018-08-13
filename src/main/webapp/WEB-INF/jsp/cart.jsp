@@ -76,28 +76,34 @@ $(document).ready(function(){
  <a href="javascript:history.go(-1);" class="iconfont backIcon">&#60;</a>
  <h1>购物车</h1>
 </header>
+
 <dl class="cart">
  <dt>
   <label><input type="checkbox"/>全选</label>
   <a class="edit">编辑</a>
  </dt>
+
  <dd>
   <input type="checkbox"/>
   <a href="product.jsp" class="goodsPic"><img src="../../upload/goods004.jpg"/></a>
   <div class="goodsInfor">
+
    <h2>
     <a href="product.jsp">聚财貔貅风水摆件</a>
     <span>1</span>
    </h2>
+
    <div class="priceArea">
     <strong>0.00</strong>
     <del>0.00</del>
    </div>
+
    <div class="numberWidget">
     <input type="button" value="-" class="minus"/>
     <input type="text" value="1" disabled  class="number"/>
     <input type="button" value="+"  class="plus"/>
    </div>
+
   </div>
   <a class="delBtn">删除</a>
  </dd>
@@ -142,6 +148,9 @@ $(document).ready(function(){
   <a class="delBtn">删除</a>
  </dd>
 </dl>
+
+
+
 <!--bottom nav-->
 <div style="height:1rem;"></div>
 <aside class="btmNav">
