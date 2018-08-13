@@ -27,18 +27,6 @@
 <script src="../../js/jquery.js"></script>
 <script>
 $(document).ready(function(){
-  //show or hide:delBtn
-  $(".edit").toggle(function(){
-	  $(this).parent().siblings("dd").find(".delBtn").fadeIn();
-	  $(this).html("完成");
-	  $(".numberWidget").show();
-	  $(".priceArea").hide();
-	  },function(){
-	  $(this).parent().siblings("dd").find(".delBtn").fadeOut();
-	  $(this).html("编辑");
-	  $(".numberWidget").hide();
-	  $(".priceArea").show();
-		  });
   //minus
   $(".minus").click(function(){
 	  var currNum=$(this).siblings(".number");  //先看class为number的文本框的值
